@@ -58,7 +58,7 @@ const Search = () => {
          placeholder="I'm searching for..." 
          className="bg-transparent outline-none border-l border-gray-400 flex-1 px-4 "
          />
-        <BsSearch className="text-2xl text-gray-600 pl-2 "/>
+        <BsSearch className="text-2xl text-gray-600 pl-2 cursor-pointer"/>
     </div>
   )
 }

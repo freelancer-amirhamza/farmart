@@ -47,8 +47,8 @@ h1,h2,h4, h5, h6{
   }
 
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+   -ms-overflow-style: none; /*IE and Edge */
+   scrollbar-width: none; 
   }
 
   /* Products */

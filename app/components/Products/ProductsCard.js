@@ -21,7 +21,7 @@ const ProductsCard = ({ product }) => {
       <div className="flex flex-col gap-1 mt-2 w-full">
         <h4 className="text-sm font-bold text-color">Farmart</h4>
         <h3 className="text-lg font-bold text-title truncate">{name} </h3>
-        <span className="text-sm text-gray-500  ">{weight}</span>
+        <span className="text-sm text-color  ">{weight}</span>
         <div className="flex items-center gap-1">
           <span className={`text-base font-bold ${oldPrice ? 'text-orange' : 'text-green' }`}>{price} </span>
           {oldPrice && (

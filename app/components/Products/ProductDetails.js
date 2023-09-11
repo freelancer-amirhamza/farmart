@@ -1,5 +1,6 @@
 import React from "react";
 import FooterCard from "../FooterCard";
+import Quantity from "../shared/Quantity";
 
 const ProductDetails = ({ price = 25.25, oldPrice = 30 }) => {
   return (
@@ -59,18 +60,8 @@ const ProductDetails = ({ price = 25.25, oldPrice = 30 }) => {
               <div className="border-t"></div>
               <div className="my-5">
                 <span className="text-sm pb-2 block text-color">Quantity</span>
-                <div className="flex  gap-2">
-                  <div className="flex border">
-                    <button className="w-10 h-full  flex items-center justify-center bg-[#F5F5F5]">
-                      -
-                    </button>
-                    <div className="w-10 h-full  flex items-center justify-center">
-                      1
-                    </div>
-                    <button className="w-10 h-full  flex items-center justify-center bg-[#F5F5F5]">
-                      +
-                    </button>
-                  </div>
+                <div className="flex  gap-3">
+                 <Quantity/>
                   <button className="btn-white bg-primary">Add to cart</button>
                 </div>
               </div>

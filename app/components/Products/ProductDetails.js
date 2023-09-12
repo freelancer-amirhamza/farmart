@@ -1,6 +1,7 @@
 import React from "react";
 import FooterCard from "../FooterCard";
 import Quantity from "../shared/Quantity";
+import Breadcrumb from "../shared/Breadcrumb";
 
 const ProductDetails = ({ price = 25.25, oldPrice = 30 }) => {
   return (
@@ -17,15 +18,13 @@ const ProductDetails = ({ price = 25.25, oldPrice = 30 }) => {
             </div>
             <div className="lg:w-2/5 w-full lg:px-10 pl-0 ">
               <div className="text-color mb-5">
-                <a href="/">Home</a>
-                <span className="mx-2">/</span>
-                <a href="/">Shop</a>
-                <span className="mx-2">/</span>
-                <a href="/">Breakfast Cereals</a>
-                <span className="mx-2">/</span>
-                <span className="text-title">
-                  Bar S - Classic Bun Length Franks
-                </span>
+              <Breadcrumb
+             items={[
+              {label: 'Home', href: '/' },
+              {label: 'Shop', href: '/products' },
+              {label: 'Bar S - Classic Bun Length Franks'}
+                    ]}
+              />
               </div>
               <h4 className="md:text-xl text-base font-bold mb-2 text-orange">
                 MartFury

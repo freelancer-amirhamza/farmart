@@ -1,9 +1,14 @@
-import React from 'react'
+import ProductDetails from '@/app/components/Products/ProductDetails'
+import ProductMoreInfo from '@/app/components/Products/ProductMoreInfo'
 
-const index = () => {
+
+const Products = () => {
   return (
-    <div>index</div>
+    <>
+      <ProductDetails/>
+      <ProductMoreInfo/>
+    </>
   )
 }
 
-export default index
+export default Products

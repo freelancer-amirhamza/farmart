@@ -1,5 +1,5 @@
 import React from "react";
-import { HiOutlineMail } from "react-icons/hi";
+import Link from "next/link";
 import Button from "../shared/Button";
 
 const CartActions = () => {
@@ -37,9 +37,11 @@ const CartActions = () => {
             <h2 className="text-xl font-bold">Total</h2>
             <h2 className="text-xl font-bold text-green">$200.00</h2>
         </div>
-        <Button
-           title="Apply" 
+       <Link href="/checkout" >
+       <Button
+           title="Checkout" 
           className="w-full py-3" />
+       </Link>
       </div>
         </div>
     </div>

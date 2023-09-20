@@ -1,7 +1,12 @@
-import React from 'react'
-import Button from '../shared/Button'
 
-const YourOrder = () => {
+import { FormBtn } from "../shared/form"
+
+const YourOrder = ({}) => {
+
+    const placeOrder = async (values) => {
+        setLoading(true)
+    }
+
   return (
     <div>
         <h3 className="text-2xl mb-4">Your Order</h3>
@@ -50,10 +55,10 @@ const YourOrder = () => {
             <h2 className="mt-3 text-gray-500">Pay with a Credit/Debit Card</h2>
         </div>
         </div>
-        <Button
+        <FormBtn
            title='Place Order'
-           className='w-full py-3 mt-5'
-           />
+           onClick={placeOrder}
+                      />
     </div>
   )
 }

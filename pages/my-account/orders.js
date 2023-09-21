@@ -1,8 +1,9 @@
+import DashboardLayout from '@/app/layout/DashboardLayout'
 import React from 'react'
 
 const orders = () => {
   return (
-    <div>orders</div>
+    <DashboardLayout>orders</DashboardLayout>
   )
 }
 

@@ -28,6 +28,7 @@ const Auth = () => {
     const signUp = (email, password) => {
         auth.createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
+                
                 addUserToDatabase(userCredential.user)
             })
             .catch((error) => {

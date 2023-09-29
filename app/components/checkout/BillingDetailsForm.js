@@ -36,10 +36,6 @@ const BillingDetailsForm = () => {
                 placeholder="Town / City"
             />
             <FormInput
-                name="state"
-                placeholder="State / Province"
-            />
-            <FormInput
                 name="zip"
                 placeholder="ZIP / Postal code"
             />

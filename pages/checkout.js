@@ -2,12 +2,13 @@
 import CheckoutContent from "@/app/components/checkout/CheckoutContent";
 
 import Breadcrumb from "@/app/components/shared/Breadcrumb";
+import SecureLayout from "@/app/layout/SecureLayout";
 
 const checkout = () => {
 
  
   return (
-    <main>
+    <SecureLayout>
       {/* Breadcrumb */}
       <div className="bg-[#F5F5F5] py-5">
         <div className="mx-auto max-w-5xl ">
@@ -24,7 +25,7 @@ const checkout = () => {
          <CheckoutContent/>
         </div>
       </div>
-    </main>
+    </SecureLayout>
   );
 };
 

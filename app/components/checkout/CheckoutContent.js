@@ -3,6 +3,11 @@ import BillingInfo from './BillingInfo'
 import YourOrder from './YourOrder'
 import * as Yup from "yup";
 import { AppForm } from '../shared/form';
+import { selectUser } from '@/app/redux/slices/authSlice';
+import { useSelector } from 'react-redux';
+import { db, timestamp } from '@/app/utils/firebase';
+import { selectItems, selectTotalPrice } from '@/app/redux/slices/basketSlice';
+import { uuid } from '@/app/utils/helpers';
 
 
 const validationSchema = Yup.object().shape({
@@ -12,7 +17,6 @@ const validationSchema = Yup.object().shape({
     country: Yup.string().required().label("Country / Region"),
     address: Yup.string().required().label("Address"),
     city: Yup.string().required().label("City"),
-    state: Yup.string().required().label("State / Province"),
     zip: Yup.string().required().label("ZIP / Postal code"),
     phone: Yup.string().required().label("Phone"),
     email: Yup.string().email().required().label("Email"),
@@ -20,12 +24,36 @@ const validationSchema = Yup.object().shape({
 });
 
 const CheckoutContent = () => {
-    
+    const user = useSelector(selectUser)
     const [loading, setLoading] = useState(false)
-
-
+    const cartItems = useSelector(selectItems)
+    const cartTotal = useSelector(selectTotalPrice)
+    
     const placeOrder = async (values) => {
         setLoading(true)
+        await saveBillingDetails(values)
+        await placeOrderHandler(values)
+        setLoading(false)
+    }
+
+    const saveBillingDetails = async (values) => {
+        return db.collection('users').doc(user.uid).set({
+            billing_details: values
+      }, {merge: true}) 
+    }
+
+    const placeOrderHandler = async (values) => {
+        const order_id = uuid()
+        const orderData = {
+            order_id,
+            ...user,
+            payment_success:true,
+            billing_details: values,
+            items: cartItems,
+            total: cartTotal,
+            created_at: timestamp,
+        }
+        await db.collection('orders').doc(order_id).set(orderData)
     }
 
     
@@ -35,16 +63,15 @@ const CheckoutContent = () => {
         <div className="flex flex-wrap md:flex-nowrap gap-5">
             <AppForm
                 initialValues={{
-                    first_name:  '',
-                    last_name:  '',
-                    company:  '',
-                    country: '',
-                    address: '',
-                    city: '',
-                    state:  '',
-                    zip:'',
-                    phone:'',
-                    email:'',
+                    first_name: user?.billing_details?.first_name || '',
+                    last_name:  user?.billing_details?.last_name ||  '',
+                    company:  user?.billing_details?.company ||  '',
+                    country: user?.billing_details?.country ||  '',
+                    address: user?.billing_details?.address ||  '',
+                    city: user?.billing_details?.city ||  '',
+                    zip: user?.billing_details?.zip || '',
+                    phone: user?.billing_details?.phone || '',
+                    email: user?.billing_details?.email || '',
                     notes: "",
                 }}
                 onSubmit={placeOrder}

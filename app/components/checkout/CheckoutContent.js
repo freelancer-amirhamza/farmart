@@ -4,10 +4,11 @@ import YourOrder from './YourOrder'
 import * as Yup from "yup";
 import { AppForm } from '../shared/form';
 import { selectUser } from '@/app/redux/slices/authSlice';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { db, timestamp } from '@/app/utils/firebase';
-import { selectItems, selectTotalPrice } from '@/app/redux/slices/basketSlice';
+import { selectItems, selectTotalPrice, updateBasket } from '@/app/redux/slices/basketSlice';
 import { uuid } from '@/app/utils/helpers';
+import { useRouter } from 'next/router';
 
 
 const validationSchema = Yup.object().shape({
@@ -28,11 +29,19 @@ const CheckoutContent = () => {
     const [loading, setLoading] = useState(false)
     const cartItems = useSelector(selectItems)
     const cartTotal = useSelector(selectTotalPrice)
+    const router = useRouter()
+    const dispatch = useDispatch()
+    
     
     const placeOrder = async (values) => {
         setLoading(true)
         await saveBillingDetails(values)
-        await placeOrderHandler(values)
+
+        const order_id = uuid()
+
+        await placeOrderHandler(values, order_id)
+        router.push('/success?order_id=' + order_id)
+        dispatch(updateBasket({}))
         setLoading(false)
     }
 
@@ -42,8 +51,7 @@ const CheckoutContent = () => {
       }, {merge: true}) 
     }
 
-    const placeOrderHandler = async (values) => {
-        const order_id = uuid()
+    const placeOrderHandler = async (values, order_id) => {
         const orderData = {
             order_id,
             ...user,

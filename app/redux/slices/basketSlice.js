@@ -1,3 +1,4 @@
+import { updateLocalCart } from "@/app/utils/helpers";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -10,12 +11,15 @@ export const basketSlice = createSlice({
     reducers: {
         updateBasket: (state, action) => {
             state.items = action.payload;
+            
         },
         addItem: (state, action) => {
             state.items = [action.payload, ...state.items]
+            
         },
         removeItem: (state, action) => {
             state.items = state.items.filter(x => x.id !== action.payload)
+            
         },
         increaseItemQuantity: (state, action) => {
             state.items = state.items.map(item => {
@@ -25,6 +29,7 @@ export const basketSlice = createSlice({
                     quantity: item.quantity + 1
                 }
             })
+            
         },
         decreaseItemQuantity: (state, action) => {
             state.items = state.items.map(item => {
@@ -35,6 +40,7 @@ export const basketSlice = createSlice({
                     quantity: item.quantity - 1
                 }
             }).filter(x => x !== false)
+            
         }
     }
 })

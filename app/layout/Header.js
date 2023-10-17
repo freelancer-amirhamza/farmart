@@ -3,10 +3,11 @@ import Link from "next/link";
 import Search from "../components/Search";
 import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 import { useSelector } from "react-redux";
-import { selectTotalCartItems } from "../redux/slices/basketSlice";
+import { selectTotalCartItems, selectTotalPrice } from "../redux/slices/basketSlice";
 
 const Header = () => {
   const cartItems = useSelector(selectTotalCartItems)
+  const totalPrice = useSelector(selectTotalPrice)
   return (
     <header className="bg-white py-7 border-b">
       <div className="container">
@@ -40,7 +41,7 @@ const Header = () => {
               </div>
               <div className="hidden lg:block">
                 <span className="text-color text-sm">Your Cart</span>
-                <p className="text-title font-bold text-sm">$ 0.00</p>
+                <p className="text-title font-bold text-sm">$ {totalPrice}</p>
               </div>
             </Link>
           </div>

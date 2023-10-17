@@ -7,7 +7,7 @@ const CartTable = () => {
   const cartItems =useSelector(selectItems)
   return (
     <div className="my-5">
-      <table className="w-full md:table hidden">
+        <table className="w-full md:table hidden">
         <thead className=" bg-gray-100 invisible md:visible ">
           <tr className="text-left">
             <th className="text-title py-5"></th>
@@ -28,7 +28,7 @@ const CartTable = () => {
       {cartItems.map((item, i) => (
             <CartTableMobile key={i} {...item} />
           ))}
-     
+
     </div>
   );
 };

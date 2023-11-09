@@ -5,8 +5,7 @@ const HomeHero = () => {
   return (
     <section
       className="py-10"
-      style={setBackgroundImage("/image/bg-hero.webp")}
-    >
+      style={setBackgroundImage("/image/bg-hero.webp")} >
       <div className="container">
         <div className="flex gap-8 flex-wrap ">
           {/* Hero Left  Banner */}
